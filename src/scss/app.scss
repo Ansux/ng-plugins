@@ -1,0 +1,302 @@
+/******************************* directive *******************************/
+
+.box {
+  width: 500px;
+  margin: 100px auto;
+  .row {
+    margin: 0 0 20px 0;
+  }
+}
+
+.ng-scroll {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  .scroll-content {
+    position: absolute;
+    width: 100%;
+  }
+  .scroll-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 50px;
+    background-color: #000;
+  }
+}
+
+.indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #999;
+}
+
+
+/*弹窗公共样式*/
+
+.w-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 1050;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1024;
+  background-color: #000;
+  opacity: .3;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=30);
+}
+
+
+/***** 确认框 ******/
+
+.ng-confirm,
+.ng-alert {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 320px;
+  height: 170px;
+  margin: -75px 0 0 -160px;
+  z-index: 9999;
+  .content {
+    border: solid 2px #999;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  .title {
+    height: 40px;
+    padding: 0 10px;
+    line-height: 40px;
+    background-color: #ddd;
+  }
+  .btn-close {
+    float: right;
+    font-size: 26px;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+  }
+  .info {
+    padding: 10px;
+    height: 70px;
+    font-size: 15px;
+  }
+}
+
+.ng-confirm {
+  .btns {
+    padding: 5px 10px;
+    text-align: right;
+    border-top: solid 1px #ddd;
+  }
+  .btn-danger {
+    margin-left: 5px;
+  }
+}
+
+
+/***** 确认框 ******/
+
+
+/* ng-alert */
+
+.ng-alert {
+  &.error {
+    .content {
+      border-color: #ebccd1;
+      color: #a94442;
+    }
+    .title {
+      background-color: #f2dede;
+    }
+  }
+  &.warning {
+    .content {
+      color: #8a6d3b;
+      border-color: #faebcc;
+    }
+    .title {
+      background-color: #fcf8e3;
+    }
+  }
+  &.success {
+    .content {
+      color: #3c763d;
+      border-color: #d6e9c6;
+    }
+    .title {
+      background-color: #dff0d8;
+    }
+  }
+}
+
+
+/* ng-alert */
+
+
+/***** 自定义模态框 ******/
+
+.ng-modal {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background-color: #fff;
+  z-index: 1025;
+  .content {
+    border-radius: 5px;
+  }
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    padding: 0 15px;
+    background-color: #ddd;
+    h4 {
+      line-height: 50px;
+    }
+    button {
+      line-height: 50px;
+      outline: none;
+    }
+  }
+  .body {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 5px;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+/* datepicker */
+
+.ng-datepicker {
+  position: relative;
+  .datepicker {
+    position: absolute;
+    top: 38px;
+    width: 210px;
+    padding: 5px;
+    border: 1px solid #d1dbe5;
+    border-radius: 3px;
+    color: #48576a;
+    box-shadow: 0 2px 6px #ccc;
+    background: #fff;
+    z-index: 9999;
+    table {
+      width: 100%;
+      td {
+        width: 14.28571428571429%;
+        padding: 5px 0;
+        font-size: 13px;
+        text-align: center;
+        cursor: pointer;
+        &.disabled {
+          color: #ccc;
+        }
+        &.active {
+          background-color: #20a0ff;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .header {
+    text-align: center;
+    span {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+  .btn-pre-year {
+    margin-right: 10px;
+  }
+  .btn-next-year {
+    margin-left: 10px;
+  }
+  .btn-pre-month {
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  .btn-next-month {
+    margin-left: 5px;
+    font-size: 12px;
+  }
+}
+
+
+/* ng-select */
+
+.ng-select {
+  position: relative;
+  .options {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    z-index: 9999;
+  }
+  ul {
+    padding: 6px 0;
+    margin: 0;
+    list-style: none;
+  }
+  li {
+    padding: 6px 12px;
+  }
+  .selected {
+    background-color: #1c8de0;
+    color: #fff;
+  }
+}
+
+
+/** ng-pager */
+
+.ng-pager {
+  .page-size-select {
+    float: left;
+    width: 200px;
+    margin: 20px 0;
+    span {
+      display: inline-block;
+    }
+    .form-control {
+      display: inline-block;
+      width: 60px;
+      margin: 0 5px;
+      text-align: center;
+    }
+  }
+  .pagination {
+    a {
+      cursor: pointer;
+      z-index: 0;
+    }
+  }
+}

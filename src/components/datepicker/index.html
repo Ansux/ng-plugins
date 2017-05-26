@@ -1,0 +1,43 @@
+<div class="ng-datepicker">
+  <input type="text" class="form-control" ng-model="inputDateString" ng-focus="show()">
+  <span class="indicator glyphicon glyphicon-calendar" ng-click="show()"></span>
+  <div class="datepicker" ng-show="isOpened">
+    <div class="header">
+      <span class="btn-pre-year" ng-click="changeYear(-1)">
+          <i class="glyphicon glyphicon-chevron-left"></i>
+      </span>
+      <span class="btn-pre-month" ng-click="changeMonth(-1)">
+          <i class="glyphicon glyphicon-menu-left"></i>
+      </span>
+      <span class="year">{{year}}年</span>
+      <span class="month">{{month + 1}}月</span>
+      <span class="btn-next-month" ng-click="changeMonth(+1)">
+          <i class="glyphicon glyphicon-menu-right"></i>
+      </span>
+      <span class="btn-next-year" ng-click="changeYear(+1)">
+          <i class="glyphicon glyphicon-chevron-right"></i>
+      </span>
+    </div>
+    <div class="body">
+      <table>
+        <thead>
+          <tr>
+            <td>日</td>
+            <td>一</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="week in weeks">
+            <td ng-repeat="day in week" ng-bind="day.date" ng-click="selectDate(day)" ng-class="{'disabled': month !== day.month, 'active': (inputDate.year === day.year && inputDate.month === day.month && inputDate.date === day.date)}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer"></div>
+  </div>
+</div>
