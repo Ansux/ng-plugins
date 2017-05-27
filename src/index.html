@@ -11,12 +11,12 @@
 </head>
 
 <body ng-controller="ctrl">
-  <div class="container-fluid box">
+  <div class="box">
     <div class="row">
-      <ng-select options="options" mapping="_id,name" value="value"></ng-select>
+      <div ng-select options="options" mapping="_id,name" value="value"></div>
     </div>
     <div class="row">
-      <ng-datepicker date="2015-10-20"></ng-datepicker>
+      <div ng-datepicker date="2015-10-20"></div>
     </div>
     <div class="row">
       <div class="btn-group" role="group" aria-label="...">
@@ -24,23 +24,42 @@
         <button type="button" class="btn btn-warning" ng-click="showAlert('warning')">警告框</button>
         <button type="button" class="btn btn-success" ng-click="showAlert('success')">成功框</button>
       </div>
-      <ng-alert alert="alert"></ng-alert>
+      <div ng-alert alert="alert"></div>
     </div>
     <div class="row">
       <!--confirm-->
       <button type="button" class="btn btn-default" ng-click="showConfirm()">确认框</button>
-      <ng-confirm confirm="confirm"></ng-confirm>
+      <div ng-confirm confirm="confirm"></div>
       <!--Loading-->
       <button type="button" class="btn btn-default" ng-click="showLoading()">Loading</button>
-      <ng-loading is-loading="isLoading"></ng-loading>
+      <div ng-loading is-loading="isLoading"></div>
       <!--modal-->
       <button type="button" class="btn btn-default" ng-click="showModal()">模态框</button>
-      <ng-modal modal="modal"></ng-modal>
+      <div ng-modal modal="modal">
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+      </div>
     </div>
     <div class="row">
-      <ng-pager pager="pager"></ng-pager>
+      <div ng-pager pager="pager"></div>
     </div>
     <div class="row">
+      <div ng-scrollbar height="300">
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+        <div style="width: 100%; height: 100px; background-color: blue;"></div>
+        <div style="width: 100%; height: 100px; background-color: red;"></div>
+      </div>
     </div>
   </div>
   <script src="js/vendor.js"></script>

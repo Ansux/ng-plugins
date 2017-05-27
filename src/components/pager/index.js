@@ -2,20 +2,15 @@ module.exports = () => {
   return {
     restrict: 'AE',
     replace: true,
-    template: `<nav class="ng-pager" aria-label="Page navigation clearfix">
+    template: `<div class="ng-pager clearfix">
                 <div class="page-size-select" ng-if="pager.hasPageSizeSelect">
                   <span>每页显示</span>
-                  <select class="form-control input-sm" ng-model="pager.size" ng-change="changePageSize()">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                  </select>
+                  <div ng-select options="options" mapping="id,val" value="size"></div>
                   <span>条</span>
                 </div>
                 <ul class="pagination pull-right">
                   <li ng-class="{'disabled': pager.current===1}">
-                    <a ng-click="changePage(pager.current-1)" aria-label="Previous">
+                    <a ng-click="changePage(pager.current-1)">
                       <span aria-hidden="true">&laquo;</span>
                     </a>
                   </li>
@@ -28,15 +23,30 @@ module.exports = () => {
                     </a>
                   </li>
                 </ul>
-              </nav>`,
+              </div>`,
     scope: {
       pager: '='
     },
     controller: ['$scope', ($scope) => {
+      $scope.options = [{
+        id: 5,
+        val: 5
+      }, {
+        id: 10,
+        val: 10
+      }, {
+        id: 20,
+        val: 20
+      }, {
+        id: 30,
+        val: 30
+      }]
+
+      $scope.size = 5
+
       let scope = $scope
       // 切换分页
       scope.changePage = function (index) {
-        // 不在正常页码，则return
         if (index < 1 || index > scope.pager.totalPage) {
           return
         }
@@ -46,6 +56,12 @@ module.exports = () => {
         })
         scope.$emit('changePage')
       }
+
+      // 监听分页size变化
+      scope.$on('sizeChange', (e, val) => {
+        scope.size = val
+      })
+
       // 调整每页显示条数
       scope.changePageSize = () => {
         scope.pager.current = 1

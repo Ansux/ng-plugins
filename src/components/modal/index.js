@@ -18,11 +18,18 @@ module.exports = () => {
     scope: {
       modal: '='
     },
-    link: (scope) => {
+    link: (scope, ele, attrs, ctrl, transclude) => {
       scope.close = () => {
-        scope.modal.show = false
+        scope.modal = {}
         angular.element(document.body).removeClass('modal-open')
       }
+      scope.$watch('modal', (nv) => {
+        if (nv.show) {
+          angular.element(document.body).addClass('modal-open')
+        } else {
+          angular.element(document.body).removeClass('modal-open')
+        }
+      })
     }
   }
 }

@@ -1,5 +1,9 @@
 /******************************* directive *******************************/
 
+a:focus {
+  outline: none;
+}
+
 .box {
   width: 500px;
   margin: 100px auto;
@@ -11,18 +15,31 @@
 .ng-scroll {
   position: relative;
   overflow: hidden;
-  margin-bottom: 20px;
+  background-color: #eee;
   .scroll-content {
     position: absolute;
-    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
   }
   .scroll-bar {
     position: absolute;
     top: 0;
     right: 0;
     width: 6px;
-    height: 50px;
     background-color: #000;
+    opacity: .4;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+    }
+    .scroll-thumb {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -181,7 +198,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 5px;
+    overflow-y: auto;
   }
   iframe {
     width: 100%;
@@ -225,9 +242,17 @@
   }
   .header {
     text-align: center;
-    span {
+    button {
       display: inline-block;
-      cursor: pointer;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: none;
+    }
+    .date {
+      display: inline-block;
+      width: 88px;
+      text-align: center;
     }
   }
   .btn-pre-year {
@@ -286,11 +311,10 @@
     span {
       display: inline-block;
     }
-    .form-control {
+    .ng-select {
       display: inline-block;
       width: 60px;
       margin: 0 5px;
-      text-align: center;
     }
   }
   .pagination {

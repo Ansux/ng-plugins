@@ -1,22 +1,24 @@
 <div class="ng-datepicker">
-  <input type="text" class="form-control" ng-model="inputDateString" ng-focus="show()">
-  <span class="indicator glyphicon glyphicon-calendar" ng-click="show()"></span>
-  <div class="datepicker" ng-show="isOpened">
+  <input type="text" class="form-control" ng-model="inputDateString" ng-click="toggle($event)">
+  <span class="indicator glyphicon glyphicon-calendar" ng-click="toggle($event)"></span>
+  <div class="datepicker" ng-show="isOpened" ng-click="clickHandle($event)">
     <div class="header">
-      <span class="btn-pre-year" ng-click="changeYear(-1)">
-          <i class="glyphicon glyphicon-chevron-left"></i>
-      </span>
-      <span class="btn-pre-month" ng-click="changeMonth(-1)">
-          <i class="glyphicon glyphicon-menu-left"></i>
-      </span>
-      <span class="year">{{year}}年</span>
-      <span class="month">{{month + 1}}月</span>
-      <span class="btn-next-month" ng-click="changeMonth(+1)">
-          <i class="glyphicon glyphicon-menu-right"></i>
-      </span>
-      <span class="btn-next-year" ng-click="changeYear(+1)">
-          <i class="glyphicon glyphicon-chevron-right"></i>
-      </span>
+      <button class="btn-pre-year">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+      </button>
+      <button class="btn-pre-month">
+        <i class="glyphicon glyphicon-menu-left"></i>
+      </button>
+      <time class="date">
+        <span class="year">{{year}}年</span>
+        <span class="month">{{month + 1}}月</span>
+      </time>
+      <button class="btn-next-month">
+        <i class="glyphicon glyphicon-menu-right"></i>
+      </button>
+      <button class="btn-next-year">
+        <i class="glyphicon glyphicon-chevron-right"></i>
+      </button>
     </div>
     <div class="body">
       <table>

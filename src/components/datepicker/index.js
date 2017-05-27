@@ -6,7 +6,7 @@ module.exports = () => {
     scope: {
       dateString: '@date'
     },
-    link: (scope) => {
+    link: (scope, ele) => {
       const now = scope.dateString ? parseISO8601(scope.dateString) : new Date()
 
       // 操作的年月日
@@ -40,8 +40,7 @@ module.exports = () => {
 
       // 设置输入框日期
       function setInuptDateValue() {
-        scope.inputDateString = scope.inputDate.year + '-' + (scope.inputDate.month + 1) + '-' + scope.inputDate
-          .date
+        scope.inputDateString = `${scope.inputDate.year}-${(scope.inputDate.month + 1)}-${scope.inputDate.date}`
       }
 
       // 获取当前月的天数
@@ -107,15 +106,39 @@ module.exports = () => {
         scope.weeks = weeks
       }
 
+      // 点击其他地方隐藏
+      angular.element(document).bind('click', (event) => {
+        const e = event || window.event
+        let element = e.target || e.srcElement
+        while (element) {
+          if (element === ele[0]) {
+            return
+          } else {
+            element = element.parentNode
+          }
+        }
+        scope.$apply(() => {
+          scope.isOpened = false
+        })
+      })
+
       // 切换年份
-      scope.changeYear = (num) => {
+      function changeYear(num) {
         scope.year += num
         getDateItem(scope.year, scope.month)
       }
 
       // 切换月份
-      scope.changeMonth = (num) => {
-        scope.month += num
+      function changeMonth(num) {
+        if (!((scope.month === 0 && num < 0) || (scope.month === 11 && num > 0))) {
+          scope.month += num
+        } else if (scope.month === 0 && num <= 0) {
+          scope.year -= 1
+          scope.month = 11
+        } else {
+          scope.year += 1
+          scope.month = 0
+        }
         getDateItem(scope.year, scope.month)
       }
 
@@ -132,8 +155,31 @@ module.exports = () => {
       }
 
       // 显示
-      scope.show = () => {
-        scope.isOpened = true
+      scope.toggle = (e) => {
+        scope.isOpened = !scope.isOpened
+        if (!scope.isOpened) {
+          e.target.blur()
+        } else {
+          scope.year = scope.inputDate.year
+          scope.month = scope.inputDate.month
+          scope.date = scope.inputDate.date
+          getDateItem(scope.year, scope.month)
+        }
+      }
+
+      // 
+      scope.clickHandle = (e) => {
+        const className = e.target.className
+        const parentClassName = e.target.parentNode.className
+        if (className === 'btn-pre-month' || parentClassName === 'btn-pre-month') {
+          changeMonth(-1)
+        } else if (className === 'btn-next-month' || parentClassName === 'btn-next-month') {
+          changeMonth(1)
+        } else if (className === 'btn-pre-year' || parentClassName === 'btn-pre-year') {
+          changeYear(-1)
+        } else if (className === 'btn-next-year' || parentClassName === 'btn-next-year') {
+          changeYear(1)
+        }
       }
 
       setInuptDateValue()
